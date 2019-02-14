@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slider</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="slider">
+
+        <ul class="slides">
+            <li class="slide-item active"><a href="#"></a></li>
+            <li class="slide-item"><a href="#"></a></li>
+            <li class="slide-item"><a href="#"></a></li>
+            <li class="slide-item"><a href="#"></a></li>
+            <li class="slide-item"><a href="#"></a></li>
+        </ul>
+
+        <div class="controls">
+            <div id="prev" class="btn previous">
+                <i class="fa fa-caret-left" aria-hidden="true"></i>
+            </div>
+            <div id="next" class="btn next">
+                <i class="fa fa-caret-right" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        <div class="indicators" style="display: flex;">
+            <span id="pause-play" class="pause-play"><i class="fa fa-pause" aria-hidden="true"></i></span>
+            <span class="indicator-item active" data-slide-to="0">1</span>
+            <span class="indicator-item" data-slide-to="1">2</span>
+            <span class="indicator-item" data-slide-to="2">3</span>
+            <span class="indicator-item" data-slide-to="3">4</span>
+            <span class="indicator-item" data-slide-to="4">5</span>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
