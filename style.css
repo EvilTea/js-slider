@@ -75,7 +75,7 @@ body {
     display: block;
 }
 
-.btn {
+.controls__item {
     position: absolute;
     z-index: 2;
     display: -webkit-box;
@@ -96,25 +96,25 @@ body {
     justify-content: center;
 }
 
-.next {
+.controls__next {
     top: 0;
     right: 0;
     background: linear-gradient(to left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.next:hover,
-.next:focus {
+.controls__next:hover,
+.controls__next:focus {
     background: linear-gradient(to left, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.previous {
+.controls__prev {
     top: 0;
     left: 0;
     background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.previous:hover,
-.previous:focus {
+.controls__prev:hover,
+.controls__prev:focus {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
 }
 

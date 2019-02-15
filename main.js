@@ -1,80 +1,80 @@
-let slidesItem = document.querySelectorAll('.slide-item');
-let indContainer = document.querySelector('.indicators');
-let btnPausePlay = document.querySelector('#pause-play');
-let btnPrev = document.querySelector('#prev');
-let btnNext = document.querySelector('#next');
+let $slidesItem = $('.slide-item');
+let $indContainer = $('.indicators');
+let $indItems = $('.indicator-item')
+let $btnPausePlay = $('#pause-play');
+let $btnPrev = $('.controls__prev');
+let $btnNext = $('.controls__next');
 let currentSlide = 0;
 let playStatus = true;
 let timerId = null;
-let timerInterval = 2000;
+let timerInterval = 1000;
 
-const FA_PAUSE = '<i class="fa fa-pause" aria-hidden="true"></i>';
 const FA_PLAY = '<i class="fa fa-play" aria-hidden="true"></i>';
+const FA_PAUSE = '<i class="fa fa-pause" aria-hidden="true"></i>';
 const SPACE = ' ';
 const LEFT_ARROW = 'ArrowLeft';
 const RIGHT_ARROW = 'ArrowRight';
 
 let goToSlide = (n) => {
-    slidesItem[currentSlide].classList.toggle('active');
-    currentSlide = (n + slidesItem.length) % slidesItem.length;
-    slidesItem[currentSlide].classList.toggle('active');
-};
+  $($slidesItem[currentSlide]).toggleClass('active');
+  $($indItems[currentSlide]).toggleClass('active');
+  currentSlide = (n + $slidesItem.length) % $slidesItem.length;
+  $($slidesItem[currentSlide]).toggleClass('active');
+  $($indItems[currentSlide]).toggleClass('active');
+}
 
 let goToNextSlide = () => {
-    goToSlide(currentSlide + 1);
-};
+  goToSlide(currentSlide + 1);
+}
 
 let goToPrevSlide = () => {
-    goToSlide(currentSlide - 1);
-};
+  goToSlide(currentSlide - 1);
+}
 
-let startSlider = () => { timerId = setInterval(goToNextSlide, timerInterval); };
+let slideInterval = setInterval(goToNextSlide,timerInterval);
 
 let pauseSlideShow = () => {
-    btnPausePlay.innerHTML = FA_PLAY;
-    playStatus = !playStatus;
-    clearInterval(timerId);
-};
+  $btnPausePlay.html(FA_PLAY);
+  playStatus = !playStatus;
+  clearInterval(slideInterval);
+}
 
 let playSlideShow = () => {
-    btnPausePlay.innerHTML = FA_PAUSE;
-    playStatus = !playStatus;
-    startSlider();
-};
+  $btnPausePlay.html(FA_PAUSE);
+  playStatus = !playStatus;
+  slideInterval = setInterval(goToNextSlide, timerInterval);
+}
 
-let pausePlaySlideShow = () => playStatus ? pauseSlideShow() : playSlideShow();
+let pausePlaySlideShow = () =>  playStatus ? pauseSlideShow() : playSlideShow(); 
+
 
 let clickPrevBtn = () => {
-    pauseSlideShow();
-    goToPrevSlide();
-};
+  pauseSlideShow();
+  goToPrevSlide();
+}
 
 let clickNextBtn = () => {
-    pauseSlideShow();
-    goToNextSlide();
-};
+  pauseSlideShow();
+  goToNextSlide();
+}
 
-btnPausePlay.addEventListener('click', pausePlaySlideShow);
-btnPrev.addEventListener('click', clickPrevBtn);
-btnNext.addEventListener('click', clickNextBtn);
+$btnPausePlay.on('click', pausePlaySlideShow);
+$btnPrev.on('click', clickPrevBtn);
+$btnNext.on('click', clickNextBtn);
 
-startSlider();
 
-let clickIndicatorItem = (e) => {
-    let target = e.target;
+let clickIndicatorItem = (event) => {
+     pauseSlideShow();
+     goToSlide(+event.target.getAttribute('data-slide-to'));
+  }
 
-    if (target.classList.contains('indicator-item')) {
-        pauseSlideShow();
-        goToSlide(+target.getAttribute('data-slide-to'));
-    }
-};
+$indContainer.on('click', clickIndicatorItem);
 
-indContainer.addEventListener('click', clickIndicatorItem);
 
-let keyControlsBtn = (e) => {
-    if (e.key === SPACE) pausePlaySlideShow();
-    if (e.key === LEFT_ARROW) clickPrevBtn();
-    if (e.key === RIGHT_ARROW) clickNextBtn();
-};
+let keyControlsBtn = (event) => {
+  if (event.key === SPACE) pausePlaySlideShow();
+  if (event.key === LEFT_ARROW) clickPrevBtn();
+  if (event.key === RIGHT_ARROW) clickNextBtn();
+}
 
-document.addEventListener('keydown', keyControlsBtn);
+$(document).on('keydown', keyControlsBtn);
